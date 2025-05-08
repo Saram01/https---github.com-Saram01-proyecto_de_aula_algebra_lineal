@@ -1,10 +1,14 @@
 import math
 from vector import Vector2D
 
-def rotar_vector(v, angulo_grados):
-    rad = math.radians(angulo_grados)
-    cos_a = math.cos(rad)
-    sin_a = math.sin(rad)
-    x = v.x * cos_a - v.y * sin_a
-    y = v.x * sin_a + v.y * cos_a
-    return Vector2D(x, y)
+def rotar_vector(vector, theta):
+    """
+    Rota un vector 2D por un ángulo dado en radianes.
+
+    :param vector: Instancia del objeto Vector2D a rotar.
+    :param theta: Ángulo en radianes por el cual rotar el vector.
+    :return: Un nuevo vector rotado.
+    """
+    return vector.rotar(theta)
+
+

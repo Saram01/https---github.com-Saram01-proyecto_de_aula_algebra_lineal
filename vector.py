@@ -1,15 +1,44 @@
 import math
 
 class Vector2D:
-    def __init__(self, x, y):
+
+    def __init__(self, x=0, y=0):
         self.x = x
         self.y = y
 
-    def __add__(self, otro):
-        return Vector2D(self.x + otro.x, self.y + otro.y)
+    def __add__(self, other):
+        """Permite sumar dos vectores."""
+        if isinstance(other, Vector2D):
+            return Vector2D(self.x + other.x, self.y + other.y)
+        return NotImplemented
 
-    def __mul__(self, escalar):
-        return Vector2D(self.x * escalar, self.y * escalar)
+    def __sub__(self, other):
+        """Permite restar dos vectores."""
+        if isinstance(other, Vector2D):
+            return Vector2D(self.x - other.x, self.y - other.y)
+        return NotImplemented
 
     def __repr__(self):
         return f"Vector2D({self.x}, {self.y})"
+
+    def distancia(self, otro):
+        """Devuelve la distancia entre dos vectores"""
+        return ((self.x - otro.x) ** 2 + (self.y - otro.y) ** 2) ** 0.5
+
+    def como_tupla(self):
+        """Convierte el vector en una tupla (x, y)"""
+        return (self.x, self.y)
+
+    def rotar(self, theta):
+        """Rota el vector en el plano 2D por un ángulo 'theta' dado en radianes."""
+        cos_theta = math.cos(theta)
+        sin_theta = math.sin(theta)
+        
+        x_nueva = self.x * cos_theta - self.y * sin_theta
+        y_nueva = self.x * sin_theta + self.y * cos_theta
+        
+        return Vector2D(x_nueva, y_nueva)
+
+    def __str__(self):
+        """Representación en cadena del vector."""
+        return f"({self.x}, {self.y})"
